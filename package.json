@@ -6,9 +6,12 @@
   "scripts": {
     "cy:open": "yarn cypress open",
     "lint:fix": "eslint cypress/**/*.js --fix",
+    "cy:regression": "yarn cypress run -e TAGS=\"@regression\" --headed",
+    "cy:smoke": "yarn cypress run -e TAGS=\"@smoke\" --headed",
+    "cy:contact-us": "yarn cypress run -e TAGS=\"@contact-us\" --headed",
+    "cy:login": "yarn cypress run -e TAGS=\"@login\" --headed",
     "cy:run": "yarn cypress run",
-    "lint": "eslint cypress/**/*.js",
-    "npm run lint": "npm run lint:fix"
+    "ccb:report-generate": "node cucumber-html-reports.js"
   },
   "author": "Eduardo Quaresimin Santos",
   "license": "ISC",
@@ -17,13 +20,28 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@faker-js/faker": "^7.6.0",
     "cypress": "^12.5.1",
+    "cypress-cucumber-attach-screenshots-to-failed-steps": "^1.0.0",
     "cypress-xpath": "^2.0.1",
     "eslint": "^8.33.0",
     "eslint-plugin-cypress": "^2.12.1",
+    "multiple-cucumber-html-reporter": "^3.1.0",
     "ts-loader": "^9.4.2",
     "typescript": "^4.9.5"
   },
   "cypress-cucumber-preprocessor": {
-    "stepDefinitions": "cypress/support/step_definitions/**/*.js"
+    "stepDefinitions": "cypress/support/step_definitions/**/*.js",
+    "html": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-html/cucumber-reports.html"
+    },
+    "messages": {
+      "enabled": true,
+      "output": "cypress/reports/cucumber-ndjson/cucumber-reports.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "formatter": "cucumber-json-formatter",
+      "output": "cypress/reports/cucumber-json/cucumber-reports.json"
+    }
   }
 }
