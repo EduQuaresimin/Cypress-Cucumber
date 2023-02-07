@@ -27,7 +27,10 @@ When('I click on the submit button', () => {
 })
 
 Then('I should be presented with a successfull contact us submission message', () => {
-  cy.url().should('be.eq', `${Cypress.config('baseUrl')}/Contact-Us/contact-form-thank-you.html`)
+  cy.url()
+    .should('be.eq', `${Cypress.config('baseUrl')}/Contact-Us/contact-form-thank-you.html`)
+  cy.contains('Thank You for your Message!')
+    .should('be.visible')
 })
 
 Then('I should be presented with a unsuccessfull contact us submission message', () => {
@@ -53,3 +56,23 @@ When('I type a specific phrase {string} and number - {int} - to the comment fiel
   cy.get('[placeholder="Comments"]')
     .type(phrase + ' ' + number)
 })
+
+When('I type a First Name {word} and I type a Last Name {string}', (firstName, lastName) => {
+  cy.get('[placeholder="First Name"]')
+    .type(firstName)
+  cy.get('[placeholder="Last Name"]')
+    .type(lastName)
+})
+
+When('I type an {string} and a comment {string}', (email, comment) => {
+  cy.get('[placeholder="Email Address"]')
+    .type(email)
+  cy.get('[placeholder="Comments"]')
+    .type(comment)
+})
+
+Then('I should be presented with header text {string}', (message) => {
+  cy.contains(message)
+    .should('be.visible')
+})
+

@@ -6,7 +6,7 @@
   "scripts": {
     "cy:open": "yarn cypress open",
     "lint:fix": "eslint cypress/**/*.js --fix",
-    "cy:test": "yarn cypress run",
+    "cy:run": "yarn cypress run",
     "lint": "eslint cypress/**/*.js",
     "npm run lint": "npm run lint:fix"
   },
@@ -17,6 +17,7 @@
     "@bahmutov/cypress-esbuild-preprocessor": "^2.1.5",
     "@faker-js/faker": "^7.6.0",
     "cypress": "^12.5.1",
+    "cypress-xpath": "^2.0.1",
     "eslint": "^8.33.0",
     "eslint-plugin-cypress": "^2.12.1",
     "ts-loader": "^9.4.2",
