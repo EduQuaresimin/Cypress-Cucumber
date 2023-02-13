@@ -2,8 +2,8 @@
 Feature: WebdriverUniversity - Login Portal Page
 
     Background: Pre conditions
-        Given I navigate to the WebdriverUniversity homepage
-        When I click on the Login Portal button
+        Given I navigate to the WebdriverUniversity login page
+        When I wait 3 seconds
 
     @smoke
     Scenario Outline: Validade Login Portal Page

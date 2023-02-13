@@ -2,8 +2,7 @@
 Feature: WebdriverUniversity - Contact Us Page
 
     Background: Pre conditions
-        Given I navigate to the WebdriverUniversity homepage
-        When I click on the Contact Us button
+        Given I navigate to the WebdriverUniversity Contact Us page
 
     Scenario: Valid contact us form submission
         And I type a First Name

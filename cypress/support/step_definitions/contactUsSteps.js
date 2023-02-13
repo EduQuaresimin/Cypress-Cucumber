@@ -1,5 +1,12 @@
-import { When, Then } from '@badeball/cypress-cucumber-preprocessor'
+import { When, Then, Given } from '@badeball/cypress-cucumber-preprocessor'
 import { faker } from '@faker-js/faker'
+import contactUsPO from '../page_objects/contactUsPO'
+
+const contactUsPage = new contactUsPO()
+
+Given('I navigate to the WebdriverUniversity Contact Us page', () => {
+  contactUsPage.navigateToContactUsPage()
+})
 
 When('I type a First Name', () => {
   cy.get('[placeholder="First Name"]')
@@ -21,11 +28,6 @@ When('I type a comment', () => {
     .type(faker.random.words(5))
 })
 
-When('I click on the submit button', () => {
-  cy.contains('SUBMIT')
-    .click()
-})
-
 Then('I should be presented with a successfull contact us submission message', () => {
   cy.url()
     .should('be.eq', `${Cypress.config('baseUrl')}/Contact-Us/contact-form-thank-you.html`)
@@ -38,18 +40,15 @@ Then('I should be presented with a unsuccessfull contact us submission message',
 })
 
 When('I type a specific First Name {string}', (firstName) => {
-  cy.get('[placeholder="First Name"]')
-    .type(firstName)
+  contactUsPage.typeFirstName(firstName)
 })
 
 When('I type a specific Last Name {string}', (lastName) => {
-  cy.get('[placeholder="Last Name"]')
-    .type(lastName)
+  contactUsPage.typeLastName(lastName)
 })
 
 When('I enter a specific email address {string}', (email) => {
-  cy.get('[placeholder="Email Address"]')
-    .type(email)
+  contactUsPage.typeEmailAdress(email)
 })
 
 When('I type a specific phrase {string} and number - {int} - to the comment field', (phrase, number) => {
@@ -58,17 +57,17 @@ When('I type a specific phrase {string} and number - {int} - to the comment fiel
 })
 
 When('I type a First Name {word} and I type a Last Name {string}', (firstName, lastName) => {
-  cy.get('[placeholder="First Name"]')
-    .type(firstName)
-  cy.get('[placeholder="Last Name"]')
-    .type(lastName)
+  contactUsPage.typeFirstName(firstName)
+  contactUsPage.typeLastName(lastName)
 })
 
 When('I type an {string} and a comment {string}', (email, comment) => {
-  cy.get('[placeholder="Email Address"]')
-    .type(email)
-  cy.get('[placeholder="Comments"]')
-    .type(comment)
+  contactUsPage.typeEmailAdress(email)
+  contactUsPage.typeComment(comment)
+})
+
+When('I click on the submit button', () => {
+  contactUsPage.clickOnSubmit()
 })
 
 Then('I should be presented with header text {string}', (message) => {

@@ -1,17 +1,16 @@
 import { Given, When } from '@badeball/cypress-cucumber-preprocessor'
+import homepagePO from '../page_objects/homepagePO'
+
+const homePage = new homepagePO()
 
 Given('I navigate to the WebdriverUniversity homepage', () => {
-  cy.visit('/')
+  homePage.navigate('')
 })
 
 When('I click on the Contact Us button', () => {
-  cy.get('#contact-us')
-    .invoke('removeAttr', 'target')
-    .click()
+  homePage.clickOnContactUs()
 })
 
 When('I click on the Login Portal button', () => {
-  cy.get('#login-portal')
-    .invoke('removeAttr', 'target')
-    .click()
+  homePage.clickOnLoginPortal()
 })
