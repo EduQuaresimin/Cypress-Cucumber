@@ -5,6 +5,7 @@ import createEsbuildPlugin from "@badeball/cypress-cucumber-preprocessor/esbuild
 
 export default defineConfig({
   e2e: {
+    video: false,
     baseUrl: 'http://www.webdriveruniversity.com',
     viewportHeight: 768,
     viewportWidth: 1366,
